@@ -7,11 +7,13 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import CartPage from "./pages/CartPage";
 import { UserProvider } from "./context/userContext";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   return (
     <UserProvider>
       <Router>
+        <Navbar />
         <Routes>
           {/* Homepage route */}
           <Route path="/" element={<HomePage />} />

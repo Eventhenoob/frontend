@@ -12,7 +12,7 @@ const HomePage = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8082/verse/products"
+          "https://server-eyev.onrender.com/verse/products"
         );
         setProducts(response.data); // Assuming response.data is an array of products
       } catch (err) {

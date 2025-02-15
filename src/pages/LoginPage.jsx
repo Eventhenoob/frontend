@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/userContext";
 
 const LoginPage = () => {
+  const { setUser: setUserContext } = useUser();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -46,11 +48,12 @@ const LoginPage = () => {
     e.preventDefault();
     if (validateForm()) {
       axios
-        .post("http://localhost:8082/verse/auth/login", formData)
+        .post("https://server-eyev.onrender.com/verse/auth/login", formData)
         .then((res) => {
-          
-          localStorage.setItem("userId", res.data.user._id); 
+          localStorage.setItem("userId", res.data.user._id);
           localStorage.setItem("token", res.data.tokens.access.token);
+
+          setUserContext(res.data.user);
           navigate("/");
         })
         .catch((err) => {

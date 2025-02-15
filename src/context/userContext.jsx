@@ -19,7 +19,9 @@ export const UserProvider = ({ children }) => {
 
     try {
       const response = await axios.get(
-        `http://localhost:8082/verse/user/${localStorage.getItem("userId")}`,
+        `https://server-eyev.onrender.com/verse/user/${localStorage.getItem(
+          "userId"
+        )}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -43,7 +45,6 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     fetchUser();
   }, []);
-
   return (
     <UserContext.Provider value={{ user, setUser, logout, loading }}>
       {children}

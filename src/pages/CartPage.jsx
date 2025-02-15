@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
   const [cart, setCart] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCart = async () => {
-      const token = localStorage.getItem("token"); // Get token from localStorage
+      const token = localStorage.getItem("token");
 
       if (!token) {
         setError("Authentication required. Please log in.");
@@ -34,6 +36,11 @@ const CartPage = () => {
 
     fetchCart();
   }, []);
+
+  const handleCheckout = () => {
+    alert("Checkout successfully!");
+    navigate("/");
+  };
 
   return (
     <div className="min-h-screen w-screen bg-gray-100 py-12 flex justify-center">
@@ -91,6 +98,14 @@ const CartPage = () => {
                 </div>
               ))}
             </div>
+
+            {/* Checkout Button */}
+            <button
+              onClick={handleCheckout}
+              className="w-full mt-6 bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-indigo-700 transition"
+            >
+              Checkout
+            </button>
           </div>
         )}
       </div>

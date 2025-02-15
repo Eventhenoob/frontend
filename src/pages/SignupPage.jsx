@@ -63,7 +63,7 @@ const SignupPage = () => {
     e.preventDefault();
     if (validateForm()) {
       axios
-        .post("http://localhost:8082/verse/auth/register", formData)
+        .post("https://server-eyev.onrender.com/verse/auth/register", formData)
         .then((res) => {
           localStorage.setItem("userId", res.data.user._id);
           localStorage.setItem("token", res.data.token.access.token);
